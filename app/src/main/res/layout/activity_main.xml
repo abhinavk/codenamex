@@ -18,18 +18,15 @@
             android:layout_height="80dip"
             android:layout_alignParentTop="true"
             android:background="#2c3e50"
-            android:gravity="center"
-
-
-            >
+            android:gravity="center">
 
             <TextView
 
-                android:layout_width="300dp"
+                android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="30dp"
-                android:text="CodeNameX"
+                android:text="Codename X"
+                android:textAlignment="gravity"
+                android:gravity="center"
                 android:textColor="#ffffff"
                 android:textSize="40dp"
                 android:textStyle="bold|normal"
@@ -123,7 +120,7 @@
                     android:src="@drawable/play_black" />
                 <TextView
                     android:id="@+id/text_resume_game"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -154,7 +151,7 @@
                     android:src="@drawable/add_user" />
                 <TextView
                     android:layout_width="270dp"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="Login with different account"
                     android:layout_marginLeft="20dp"
                     android:textColor="#000000"
@@ -185,7 +182,7 @@
                 <EditText
                     android:layout_width="240dp"
                     android:layout_height="50dp"
-                    android:hint="  example@gmail.com"
+                    android:hint="e-mail"
                     android:layout_marginLeft="20dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
@@ -200,7 +197,6 @@
                 android:layout_alignParentTop="true"
                 android:background="#ecf0f1"
                 android:gravity="center"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
@@ -214,7 +210,7 @@
                 <EditText
                     android:layout_width="240dp"
                     android:layout_height="50dp"
-                    android:hint="  **********"
+                    android:hint="password"
                     android:layout_marginLeft="20dp"
                     android:textColorHint="#000000"
                     android:textSize="20dp"
@@ -227,7 +223,7 @@
                 android:layout_height="50dip"
                 android:layout_alignParentTop="true"
                 android:background="#e67e22"
-                android:gravity="center"
+                android:gravity="right"
                 >
                 <Button
                     android:layout_width="150dp"
@@ -237,7 +233,7 @@
                     android:textStyle="bold"
                     android:background="#ecf0f1"
                     android:textSize="20dp"
-                    />
+                    android:layout_marginRight="20dp" />
 
             </LinearLayout>
             <LinearLayout
