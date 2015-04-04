@@ -15,9 +15,9 @@
         <!-- Footer Start -->
         <LinearLayout android:id="@+id/footer"
             android:layout_width="fill_parent"
-            android:layout_height="100dip"
+            android:layout_height="80dip"
             android:layout_alignParentTop="true"
-            android:background="#16a085"
+            android:background="#2c3e50"
             android:gravity="center"
 
 
@@ -30,7 +30,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="30dp"
                 android:text="CodeNameX"
-                android:textColor="#2c3e50"
+                android:textColor="#ffffff"
                 android:textSize="40dp"
                 android:textStyle="bold|normal"
 
@@ -93,38 +93,49 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#e74c3c"
+            android:gravity="top|center_horizontal"
+            android:orientation="horizontal">
 
-            <LinearLayout
+
+        <LinearLayout
                 android:id="@+id/layout2"
                 android:layout_width="fill_parent"
-                android:layout_height="100dip"
+                android:layout_height="60dip"
                 android:layout_alignParentTop="true"
-                android:background="#1abc9c"
+                android:background="#ecf0f1"
                 android:gravity="center"
-                android:layout_marginTop="5dp"
-
-
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 >
+
 
                 <ImageView
                     android:id="@+id/resume_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/play" />
+                    android:layout_marginLeft="30dp"
+                    android:src="@drawable/play_black" />
                 <TextView
                     android:id="@+id/text_resume_game"
                     android:layout_width="280dp"
                     android:layout_height="30dp"
                     android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
                     android:layout_marginLeft="20dp"
                     android:text="Resume as User"
-                    
+
 
                     />
 
 
-
+</LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -132,7 +143,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dip"
                 android:layout_alignParentTop="true"
-                android:background="#1abc9c"
+                android:background="#f1c40f"
                 android:gravity="center"
                 >
                 <ImageView
@@ -146,8 +157,9 @@
                     android:layout_height="40dp"
                     android:text="Login with different account"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#2c3e50"
+                    android:textColor="#000000"
                     android:textSize="20dp"
+                    android:textStyle="bold"
                     />
 
             </LinearLayout>
@@ -155,24 +167,28 @@
             <LinearLayout
                 android:id="@+id/layout6"
                 android:layout_width="fill_parent"
-                android:layout_height="80dip"
+                android:layout_height="60dip"
                 android:layout_alignParentTop="true"
-                android:background="#1abc9c"
+                android:background="#ecf0f1"
                 android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 >
                 <ImageView
                     android:id="@+id/new_email"
                     android:layout_width="50dp"
-                    android:layout_height="80dp"
+                    android:layout_height="50dp"
 
-                    android:src="@drawable/user" />
+                    android:src="@drawable/user_black" />
                 <EditText
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="  example@gmail.com"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#2c3e50"
-                    android:background="@drawable/edit_text_bkg"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
                     android:textSize="20dp"
                     />
 
@@ -180,24 +196,27 @@
             <LinearLayout
                 android:id="@+id/layout7"
                 android:layout_width="fill_parent"
-                android:layout_height="80dip"
+                android:layout_height="60dip"
                 android:layout_alignParentTop="true"
-                android:background="#1abc9c"
+                android:background="#ecf0f1"
                 android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 >
                 <ImageView
                     android:id="@+id/new_pwd"
                     android:layout_width="50dp"
-                    android:layout_height="100dp"
+                    android:layout_height="50dp"
 
-                    android:src="@drawable/lock" />
+                    android:src="@drawable/lock_black" />
                 <EditText
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="  **********"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#2c3e50"
-                    android:background="@drawable/edit_text_bkg"
+                    android:textColorHint="#000000"
                     android:textSize="20dp"
                     />
 
@@ -207,17 +226,17 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dip"
                 android:layout_alignParentTop="true"
-                android:background="#1abc9c"
+                android:background="#e67e22"
                 android:gravity="center"
                 >
                 <Button
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
                     android:text="Login"
-                    android:textColor="#2c3e50"
-                    android:background="#f1c40f"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:background="#ecf0f1"
                     android:textSize="20dp"
-                    android:layout_marginBottom="3dp"
                     />
 
             </LinearLayout>
@@ -226,23 +245,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="80dip"
                 android:layout_alignParentTop="true"
-                android:background="#16a085"
+                android:background="#2c3e50"
                 android:gravity="center"
                 android:layout_marginTop="5dp"
                 >
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/clipboard"
                     />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/trophy"
                     />
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/fb"
                     />
 
