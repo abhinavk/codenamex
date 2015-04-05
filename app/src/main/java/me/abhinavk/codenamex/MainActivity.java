@@ -155,18 +155,22 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(JSONObject data) {
             super.onPostExecute(data);
             String email = "unknown";
-            try {
-                if(data.length() > 0) {
-                    email = data.getString("email");
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("email",data.getString("email"));
-                    editor.putString("loggedin","yes");
-                    editor.putString("fname",data.getString("fname"));
-                    editor.putString("lname",data.getString("lname"));
-                    editor.putString("id",data.getString("id"));
-                }
-            } catch (JSONException e) {
+            if(data.equals(null)) {
+                //
+            } else {
+                try {
+                    if (data.length() > 0) {
+                        email = data.getString("email");
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("email", data.getString("email"));
+                        editor.putString("loggedin", "yes");
+                        editor.putString("fname", data.getString("fname"));
+                        editor.putString("lname", data.getString("lname"));
+                        editor.putString("id", data.getString("id"));
+                    }
+                } catch (JSONException e) {
 
+                }
             }
             if(email == "unknown") {
                 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_LONG).show();
