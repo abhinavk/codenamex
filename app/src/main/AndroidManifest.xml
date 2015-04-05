@@ -38,6 +38,10 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Question"
+            android:label="@string/title_activity_question" >
+        </activity>
     </application>
 
 </manifest>
