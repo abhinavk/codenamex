@@ -105,6 +105,7 @@
                     android:layout_alignParentTop="true"
                     android:background="#ecf0f1"
                     android:gravity="center"
+                    android:clickable="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:layout_marginRight="20dp"

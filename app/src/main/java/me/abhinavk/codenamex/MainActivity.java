@@ -3,6 +3,7 @@ package me.abhinavk.codenamex;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -39,6 +42,8 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
+    SharedPreferences sp;
+    public final static String EXTRA_MSG = "me.abhinavk.codenamex.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,10 @@ public class MainActivity extends ActionBarActivity {
 
         final EditText emailfield = (EditText)findViewById(R.id.emailbox);
         final EditText pwdfield = (EditText)findViewById(R.id.pwdbox);
+        TextView loggedinuser = (TextView)findViewById(R.id.text_resume_game);
         Button loginbtn = (Button)findViewById(R.id.loginbtn);
+        LinearLayout resarea = (LinearLayout)findViewById(R.id.layout2);
+
         View.OnClickListener loginbtnlsnr = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +63,23 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         loginbtn.setOnClickListener(loginbtnlsnr);
+
+        View.OnClickListener resareals = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Category.class);
+                startActivity(intent);
+            }
+        };
+        resarea.setOnClickListener(resareals);
+
+        // Get loggedin user
+        SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
+        if(sp.contains("loggedin")) {
+            if(sp.getString("loggedin","") == "yes") {
+                loggedinuser.setText("Resume as " + sp.getString("fname","") + " " + sp.getString("lname",""));
+            }
+        }
     }
 
 
@@ -126,7 +151,6 @@ public class MainActivity extends ActionBarActivity {
             super.onPreExecute();
             Toast.makeText(getApplicationContext(), "Logging in", Toast.LENGTH_LONG).show();
         }
-        public final static String EXTRA_MSG = "me.abhinavk.codenamex.MESSAGE";
         @Override
         protected void onPostExecute(JSONObject data) {
             super.onPostExecute(data);
@@ -134,6 +158,12 @@ public class MainActivity extends ActionBarActivity {
             try {
                 if(data.length() > 0) {
                     email = data.getString("email");
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("email",data.getString("email"));
+                    editor.putString("loggedin","yes");
+                    editor.putString("fname",data.getString("fname"));
+                    editor.putString("lname",data.getString("lname"));
+                    editor.putString("id",data.getString("id"));
                 }
             } catch (JSONException e) {
 
@@ -142,6 +172,7 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Logged in as " + email, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(activity, Category.class);
                 intent.putExtra(EXTRA_MSG, data.toString());
                 startActivity(intent);
@@ -150,4 +181,3 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 }
-//
