@@ -142,7 +142,7 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Logged in as " + email, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(activity, Splash.class);
+                Intent intent = new Intent(activity, Category.class);
                 intent.putExtra(EXTRA_MSG, data.toString());
                 startActivity(intent);
             }
