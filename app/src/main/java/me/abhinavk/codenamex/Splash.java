@@ -25,7 +25,7 @@ public class Splash extends Activity {
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
      */
     private static final boolean AUTO_HIDE = true;
-    private static final int SPLASH_SHOW_TIME = 5000;
+    private static final int SPLASH_SHOW_TIME = 1000;
 
     /**
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after

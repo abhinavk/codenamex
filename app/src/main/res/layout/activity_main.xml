@@ -183,6 +183,7 @@
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="e-mail"
+                    android:id="@+id/emailbox"
                     android:layout_marginLeft="20dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
@@ -208,6 +209,7 @@
 
                     android:src="@drawable/lock_black" />
                 <EditText
+                    android:id="@+id/pwdbox"
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="password"
@@ -226,6 +228,7 @@
                 android:gravity="right"
                 >
                 <Button
+                    android:id="@+id/loginbtn"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:text="Login"
