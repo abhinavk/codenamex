@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
 
         final EditText emailfield = (EditText)findViewById(R.id.emailbox);
         final EditText pwdfield = (EditText)findViewById(R.id.pwdbox);
+        final Button regbtn = (Button)findViewById(R.id.regnewbtn);
         TextView loggedinuser = (TextView)findViewById(R.id.text_resume_game);
         Button loginbtn = (Button)findViewById(R.id.loginbtn);
         LinearLayout resarea = (LinearLayout)findViewById(R.id.layout2);
@@ -73,10 +74,19 @@ public class MainActivity extends Activity {
         };
         resarea.setOnClickListener(resareals);
 
+        View.OnClickListener regareals = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Register.class);
+                startActivity(intent);
+            }
+        };
+        regbtn.setOnClickListener(regareals);
+
         // Get loggedin user
         sp = getSharedPreferences("loginfo",MODE_PRIVATE);
         if(sp.contains("loggedin")) {
-            if(sp.getString("loggedin","") == "yes") {
+            if(sp.getString("loggedin","").contentEquals("yes")) {
                 loggedinuser.setText("Resume as " + sp.getString("fname","") + " " + sp.getString("lname",""));
             }
         }

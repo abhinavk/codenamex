@@ -91,4 +91,13 @@ public class Category extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final TextView username = (TextView)findViewById(R.id.text_resume_game);
+        final TextView scoreview = (TextView)findViewById(R.id.text_score_game);
+        SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
+        username.setText(sp.getString("fname","")+" "+sp.getString("lname",""));
+        scoreview.setText(sp.getString("score",""));
+    }
 }

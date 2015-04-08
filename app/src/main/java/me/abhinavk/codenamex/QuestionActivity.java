@@ -175,28 +175,34 @@ public class QuestionActivity extends ActionBarActivity {
             try {
                 //Toast.makeText(getApplicationContext(), data.toString(), Toast.LENGTH_LONG).show();
                 JSONArray curr_ques_array = data.getJSONArray("questions");
-                Random random = new Random();
-                int qid = random.nextInt(curr_ques_array.length());
-                JSONObject current_ques_obj = curr_ques_array.getJSONObject(qid);
-                current_ques_id = current_ques_obj.getString("id");
-                current_ques_str = current_ques_obj.getString("ques");
-                current_answ = current_ques_obj.getString("ans");
-                current_ques_points = current_ques_obj.getString("points");
-                current_ques_type = current_ques_obj.getString("qtype");
-                Log.d("QUes",current_ques_str);
-                final TextView qtext = (TextView)findViewById(R.id.textView);
-                final ImageView qimg = (ImageView)findViewById(R.id.imageView);
+                if(curr_ques_array.length()>0) {
+                    Random random = new Random();
+                    int qid = random.nextInt(curr_ques_array.length());
+                    JSONObject current_ques_obj = curr_ques_array.getJSONObject(qid);
+                    current_ques_id = current_ques_obj.getString("id");
+                    current_ques_str = current_ques_obj.getString("ques");
+                    current_answ = current_ques_obj.getString("ans");
+                    current_ques_points = current_ques_obj.getString("points");
+                    current_ques_type = current_ques_obj.getString("qtype");
+                    Log.d("QUes",current_ques_str);
+                    final TextView qtext = (TextView)findViewById(R.id.textView);
+                    final ImageView qimg = (ImageView)findViewById(R.id.imageView);
 
-                if(Integer.parseInt(current_ques_type) < 2) {
-                    qtext.setVisibility(View.VISIBLE);
-                    qimg.setVisibility(View.INVISIBLE);
-                    qtext.setText(current_ques_str);
+                    if(Integer.parseInt(current_ques_type) < 2) {
+                        qtext.setVisibility(View.VISIBLE);
+                        qimg.setVisibility(View.INVISIBLE);
+                        qtext.setText(current_ques_str);
+                    } else {
+                        qimg.setVisibility(View.VISIBLE);
+                        qtext.setVisibility(View.INVISIBLE);
+                        Log.d("QUES",current_ques_str);
+                        new GetImage(QuestionActivity.this).execute(current_ques_str);
+                    }
                 } else {
-                    qimg.setVisibility(View.VISIBLE);
-                    qtext.setVisibility(View.INVISIBLE);
-                    Log.d("QUES",current_ques_str);
-                    new GetImage(QuestionActivity.this).execute(current_ques_str);
+                    Toast.makeText(getApplicationContext(), "No more unsolved question in this category.", Toast.LENGTH_LONG).show();
+                    activity.finish();
                 }
+
             } catch (JSONException e) {
 
             }

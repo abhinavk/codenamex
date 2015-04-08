@@ -126,7 +126,7 @@ public class Register extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(getApplicationContext(), "Logging in", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Registering...", Toast.LENGTH_LONG).show();
         }
         @Override
         protected void onPostExecute(JSONObject data) {
@@ -137,7 +137,8 @@ public class Register extends ActionBarActivity {
             } catch (JSONException e) {
 
             }
-            if(reply == "success") {
+            Log.d("REG_REPLY",reply);
+            if(reply.contentEquals("success")) {
                 Toast.makeText(getApplicationContext(), "Registration successful.", Toast.LENGTH_LONG).show();
                 activity.finish();
             } else {

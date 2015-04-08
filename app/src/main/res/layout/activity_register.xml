@@ -21,7 +21,6 @@
             android:gravity="center">
 
             <TextView
-
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:text="Codename X"
@@ -98,7 +97,7 @@
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="Your Name"
-                    android:id="@+id/register_name"
+                    android:id="@+id/name"
                     android:layout_marginLeft="20dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
@@ -124,7 +123,7 @@
 
                     android:src="@drawable/lock_black" />
                 <EditText
-                    android:id="@+id/register_email"
+                    android:id="@+id/email"
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="Your Email"
@@ -152,7 +151,7 @@
                     android:layout_height="50dp"
                     android:src="@drawable/lock_black" />
                 <EditText
-                    android:id="@+id/register_password"
+                    android:id="@+id/password"
                     android:layout_width="240dp"
                     android:layout_height="50dp"
                     android:hint="Choose a password"
@@ -173,7 +172,7 @@
                 android:gravity="center"
                 >
                 <Button
-                    android:id="@+id/loginbtn"
+                    android:id="@+id/regbtn"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:text="Register"
