@@ -115,6 +115,7 @@ public class MainActivity extends ActionBarActivity {
             List<NameValuePair> postparams = new ArrayList<NameValuePair>();
             postparams.add(new BasicNameValuePair("login_email",params[0]));
             postparams.add(new BasicNameValuePair("login_password",params[1]));
+            Log.d("CRED",params[0]+ " "+params[1]);
             InputStream istream = null;
             JSONObject jsonObject = null;
             try {
@@ -167,6 +168,8 @@ public class MainActivity extends ActionBarActivity {
                         editor.putString("fname", data.getString("fname"));
                         editor.putString("lname", data.getString("lname"));
                         editor.putString("id", data.getString("id"));
+                        editor.commit();
+                        Log.d("ID",sp.getString("id",""));
                     }
                 } catch (JSONException e) {
 

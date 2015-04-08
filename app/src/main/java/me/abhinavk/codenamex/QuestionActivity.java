@@ -3,6 +3,8 @@ package me.abhinavk.codenamex;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +23,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -32,6 +37,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -68,28 +76,20 @@ public class QuestionActivity extends ActionBarActivity {
 
         // Get the current user details in the instance
         SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
-        if(sp.contains("loggedin")) {
-            if(sp.getString("loggedin","") == "yes") {
+
                 current_id = sp.getString("id","");
                 current_fname = sp.getString("fname","");
                 current_lname = sp.getString("lname","");
-            }
-        }
         new GetQuestion(QuestionActivity.this).execute(current_id,current_cat);
         // Submit Button action
         View.OnClickListener submitbtnlsnr = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(Pattern.matches(current_answ,user_answer.getText().toString())) {
-                    new SendAnswer(QuestionActivity.this).execute(current_id,current_ques_id,current_ques_points);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        Log.e("Operation","Interrupted normal operation");
-                    }
-                    new GetQuestion(QuestionActivity.this).execute(current_id,current_cat);
+                    Log.d("ANSWER",current_id+current_ques_id+current_ques_points);
+                    new SendAnswer(QuestionActivity.this).execute(current_id, current_ques_id, current_ques_points);
                 } else {
-                    new GetQuestion(QuestionActivity.this).execute(current_id,current_cat);
+                    Toast.makeText(getApplicationContext(), "Wrong answer. Try again or go back to category page.", Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -130,6 +130,7 @@ public class QuestionActivity extends ActionBarActivity {
             List<NameValuePair> postparams = new ArrayList<NameValuePair>();
             postparams.add(new BasicNameValuePair("user_id",params[0]));
             postparams.add(new BasicNameValuePair("cat",params[1]));
+            Log.v("TAGG",params[0]+params[1]);
             InputStream istream = null;
             JSONObject jsonObject = null;
             try {
@@ -141,7 +142,7 @@ public class QuestionActivity extends ActionBarActivity {
                 HttpResponse response = httpClient.execute(httpPost);
                 HttpEntity entity = response.getEntity();
                 istream = entity.getContent();
-                Log.d("RESP",response.toString());
+                //Log.d("RESP",response.toString());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(istream, "UTF-8"));
                 StringBuilder builder = new StringBuilder();
                 for (String line = null; (line = reader.readLine()) != null;) {
@@ -173,6 +174,7 @@ public class QuestionActivity extends ActionBarActivity {
             super.onPostExecute(data);
 
             try {
+                //Toast.makeText(getApplicationContext(), data.toString(), Toast.LENGTH_LONG).show();
                 JSONArray curr_ques_array = data.getJSONArray("questions");
                 Random random = new Random();
                 int qid = random.nextInt(curr_ques_array.length());
@@ -182,10 +184,19 @@ public class QuestionActivity extends ActionBarActivity {
                 current_answ = current_ques_obj.getString("ans");
                 current_ques_points = current_ques_obj.getString("points");
                 current_ques_type = current_ques_obj.getString("qtype");
+                Log.d("QUes",current_ques_str);
+                final TextView qtext = (TextView)findViewById(R.id.textView);
+                final ImageView qimg = (ImageView)findViewById(R.id.imageView);
 
-                if(current_ques_type == "0") {
-                    final TextView qtext = (TextView)findViewById(R.id.textView);
+                if(Integer.parseInt(current_ques_type) < 2) {
+                    qtext.setVisibility(View.VISIBLE);
+                    qimg.setVisibility(View.INVISIBLE);
                     qtext.setText(current_ques_str);
+                } else {
+                    qimg.setVisibility(View.VISIBLE);
+                    qtext.setVisibility(View.INVISIBLE);
+                    Log.d("QUES",current_ques_str);
+                    new GetImage(QuestionActivity.this).execute(current_ques_str);
                 }
             } catch (JSONException e) {
 
@@ -208,6 +219,7 @@ public class QuestionActivity extends ActionBarActivity {
             postparams.add(new BasicNameValuePair("user_ques",params[1]));
             postparams.add(new BasicNameValuePair("user_points",params[2]));
             InputStream istream = null;
+            Log.d("SEnd ans",params[0]+" "+params[1]+" "+params[2]);
             JSONObject jsonObject = null;
             try {
                 httpPost.setEntity(new UrlEncodedFormEntity(postparams));
@@ -249,15 +261,60 @@ public class QuestionActivity extends ActionBarActivity {
 
             try {
                 String reply = data.getString("result");
-                if(reply == "success") {
-                    Toast.makeText(getApplicationContext(), "Loading next question...", Toast.LENGTH_LONG).show();
-
-                }
+                Log.d("REPLY",reply);
             } catch (JSONException e) {
 
             }
-
-
+            activity.finish();
         }
     }
+
+    private class GetImage extends AsyncTask<String, Void, Bitmap> {
+
+        private Activity activity;
+
+        HttpGet httpRequest = null;
+        Bitmap bitmap = null;
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL("http://cnxcnx.byethost3.com/" + params[0]);
+                httpRequest = new HttpGet(url.toURI());
+
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpResponse response = httpclient.execute(httpRequest);
+
+                HttpEntity entity = response.getEntity();
+                BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+                InputStream instream = bufHttpEntity.getContent();
+                bitmap = BitmapFactory.decodeStream(instream);
+
+                Log.d("QUESTION","params[0]");
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+            }
+            return bitmap;
+        }
+
+        public GetImage(Activity activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected void onPostExecute(Bitmap data) {
+            super.onPostExecute(data);
+
+            final ImageView qimg = (ImageView)findViewById(R.id.imageView);
+            qimg.setImageBitmap(data);
+        }
+    }
+
 }
