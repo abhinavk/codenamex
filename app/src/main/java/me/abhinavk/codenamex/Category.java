@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class Category extends ActionBarActivity{
@@ -30,15 +31,15 @@ public class Category extends ActionBarActivity{
         8 - Seasons
         */
 
-        final Button btn_0 = (Button)findViewById(R.id.cat_mystery);
-        final Button btn_1 = (Button)findViewById(R.id.cat_movies);
-        final Button btn_2 = (Button)findViewById(R.id.cat_games);
-        final Button btn_3 = (Button)findViewById(R.id.cat_history);
-        final Button btn_4 = (Button)findViewById(R.id.cat_science);
-        final Button btn_5 = (Button)findViewById(R.id.cat_tech);
-        final Button btn_6 = (Button)findViewById(R.id.cat_music);
-        final Button btn_7 = (Button)findViewById(R.id.cat_personalities);
-        final Button btn_8 = (Button)findViewById(R.id.cat_seasons);
+        final ImageButton btn_0 = (ImageButton)findViewById(R.id.cat_mystery);
+        final ImageButton btn_1 = (ImageButton)findViewById(R.id.cat_movies);
+        final ImageButton btn_2 = (ImageButton)findViewById(R.id.cat_games);
+        final ImageButton btn_3 = (ImageButton)findViewById(R.id.cat_history);
+        final ImageButton btn_4 = (ImageButton)findViewById(R.id.cat_science);
+        final ImageButton btn_5 = (ImageButton)findViewById(R.id.cat_tech);
+        final ImageButton btn_6 = (ImageButton)findViewById(R.id.cat_music);
+        final ImageButton btn_7 = (ImageButton)findViewById(R.id.cat_personalities);
+        final ImageButton btn_8 = (ImageButton)findViewById(R.id.cat_seasons);
 
         View.OnClickListener catbtnlistener = new View.OnClickListener() {
             @Override

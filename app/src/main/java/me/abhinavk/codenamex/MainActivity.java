@@ -74,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
         resarea.setOnClickListener(resareals);
 
         // Get loggedin user
-        SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
+        sp = getSharedPreferences("loginfo",MODE_PRIVATE);
         if(sp.contains("loggedin")) {
             if(sp.getString("loggedin","") == "yes") {
                 loggedinuser.setText("Resume as " + sp.getString("fname","") + " " + sp.getString("lname",""));
