@@ -257,18 +257,22 @@ public class QuestionActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(JSONObject data) {
             super.onPostExecute(data);
+            if(data.length()>0) {
+                try {
+                    String reply = data.getString("score");
+                    Log.d("REPLY-newscore", reply);
+                    SharedPreferences sp = getSharedPreferences("loginfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("score", reply);
+                    editor.commit();
+                } catch (JSONException e) {
 
-            try {
-                String reply = data.getString("score");
-                Log.d("REPLY-newscore",reply);
-                SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString("score",reply);
-                editor.commit();
-            } catch (JSONException e) {
+                }
+                activity.finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Updating score failed. Please try again.", Toast.LENGTH_LONG).show();
 
             }
-            activity.finish();
         }
     }
 

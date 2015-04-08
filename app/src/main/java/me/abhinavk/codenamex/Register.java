@@ -87,9 +87,9 @@ public class Register extends ActionBarActivity {
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost("http://cnxcnx.byethost3.com/register.php");
             List<NameValuePair> postparams = new ArrayList<NameValuePair>();
-            postparams.add(new BasicNameValuePair("name",params[0]));
-            postparams.add(new BasicNameValuePair("email",params[1]));
-            postparams.add(new BasicNameValuePair("password",params[1]));
+            postparams.add(new BasicNameValuePair("register_name",params[0]));
+            postparams.add(new BasicNameValuePair("register_email",params[1]));
+            postparams.add(new BasicNameValuePair("register_password",params[1]));
 
             Log.d("CRED", params[0] + " " + params[1] + " " + params[2]);
             InputStream istream = null;
