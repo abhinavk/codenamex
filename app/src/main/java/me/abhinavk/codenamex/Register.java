@@ -1,35 +1,29 @@
 package me.abhinavk.codenamex;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,53 +34,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends Activity {
-
-    SharedPreferences sp;
-    public final static String EXTRA_MSG = "me.abhinavk.codenamex.MESSAGE";
+public class Register extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
-        final EditText emailfield = (EditText)findViewById(R.id.emailbox);
-        final EditText pwdfield = (EditText)findViewById(R.id.pwdbox);
-        TextView loggedinuser = (TextView)findViewById(R.id.text_resume_game);
-        Button loginbtn = (Button)findViewById(R.id.loginbtn);
-        LinearLayout resarea = (LinearLayout)findViewById(R.id.layout2);
+        final EditText name = (EditText)findViewById(R.id.name);
+        final EditText email = (EditText)findViewById(R.id.email);
+        final EditText password = (EditText)findViewById(R.id.password);
+        final Button regbtn = (Button)findViewById(R.id.regbtn);
 
-        View.OnClickListener loginbtnlsnr = new View.OnClickListener() {
+        View.OnClickListener regbtnlistener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new loginAuthentication(MainActivity.this).execute(emailfield.getText().toString(),pwdfield.getText().toString());
+                new RegUser(Register.this).execute(name.getText().toString(),email.getText().toString(),password.getText().toString());
             }
         };
-        loginbtn.setOnClickListener(loginbtnlsnr);
 
-        View.OnClickListener resareals = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Category.class);
-                startActivity(intent);
-            }
-        };
-        resarea.setOnClickListener(resareals);
-
-        // Get loggedin user
-        sp = getSharedPreferences("loginfo",MODE_PRIVATE);
-        if(sp.contains("loggedin")) {
-            if(sp.getString("loggedin","") == "yes") {
-                loggedinuser.setText("Resume as " + sp.getString("fname","") + " " + sp.getString("lname",""));
-            }
-        }
+        regbtn.setOnClickListener(regbtnlistener);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_register, menu);
         return true;
     }
 
@@ -105,17 +79,19 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class loginAuthentication extends AsyncTask<String, Void, JSONObject> {
+    private class RegUser extends AsyncTask<String, Void, JSONObject> {
 
         private Activity activity;
         @Override
         protected JSONObject doInBackground(String... params) {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://cnxcnx.byethost3.com/login.php");
+            HttpPost httpPost = new HttpPost("http://cnxcnx.byethost3.com/register.php");
             List<NameValuePair> postparams = new ArrayList<NameValuePair>();
-            postparams.add(new BasicNameValuePair("login_email",params[0]));
-            postparams.add(new BasicNameValuePair("login_password",params[1]));
-            Log.d("CRED",params[0]+ " "+params[1]);
+            postparams.add(new BasicNameValuePair("name",params[0]));
+            postparams.add(new BasicNameValuePair("email",params[1]));
+            postparams.add(new BasicNameValuePair("password",params[1]));
+
+            Log.d("CRED", params[0] + " " + params[1] + " " + params[2]);
             InputStream istream = null;
             JSONObject jsonObject = null;
             try {
@@ -143,7 +119,7 @@ public class MainActivity extends Activity {
             return jsonObject;
         }
 
-        public loginAuthentication(Activity activity) {
+        public RegUser(Activity activity) {
             this.activity = activity;
         }
 
@@ -155,35 +131,17 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(JSONObject data) {
             super.onPostExecute(data);
-            String email = "unknown";
-            if(data.equals(null)) {
-                //
-            } else {
-                try {
-                    if (data.length() > 0) {
-                        email = data.getString("email");
-                        SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("email", data.getString("email"));
-                        editor.putString("loggedin", "yes");
-                        editor.putString("fname", data.getString("fname"));
-                        editor.putString("lname", data.getString("lname"));
-                        editor.putString("id", data.getString("id"));
-                        editor.putString("score", data.getString("score"));
-                        editor.commit();
-                        Log.d("ID",sp.getString("id",""));
-                    }
-                } catch (JSONException e) {
+            String reply = null;
+            try {
+                reply = data.getString("result");
+            } catch (JSONException e) {
 
-                }
             }
-            if(email == "unknown") {
-                Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_LONG).show();
+            if(reply == "success") {
+                Toast.makeText(getApplicationContext(), "Registration successful.", Toast.LENGTH_LONG).show();
+                activity.finish();
             } else {
-                Toast.makeText(getApplicationContext(), "Logged in as " + email, Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(activity, Category.class);
-                intent.putExtra(EXTRA_MSG, data.toString());
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Failed. Try again.", Toast.LENGTH_LONG).show();
             }
 
         }

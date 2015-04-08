@@ -1,6 +1,8 @@
 package me.abhinavk.codenamex;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,9 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
-public class Category extends ActionBarActivity{
+public class Category extends Activity {
 
     public final static String EXTRA_MSG = "me.abhinavk.codenamex.WHICHCAT";
 
@@ -40,6 +43,13 @@ public class Category extends ActionBarActivity{
         final ImageButton btn_6 = (ImageButton)findViewById(R.id.cat_music);
         final ImageButton btn_7 = (ImageButton)findViewById(R.id.cat_personalities);
         final ImageButton btn_8 = (ImageButton)findViewById(R.id.cat_seasons);
+
+        final TextView username = (TextView)findViewById(R.id.text_resume_game);
+        final TextView scoreview = (TextView)findViewById(R.id.text_score_game);
+
+        SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
+        username.setText(sp.getString("fname","")+" "+sp.getString("lname",""));
+        scoreview.setText(sp.getString("score",""));
 
         View.OnClickListener catbtnlistener = new View.OnClickListener() {
             @Override

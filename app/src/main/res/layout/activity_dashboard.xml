@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true">
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,8 @@
 
         <!--  Header Ends -->
         <!-- Footer Start -->
-        <LinearLayout android:id="@+id/footer"
+        <LinearLayout
+            android:id="@+id/footer"
             android:layout_width="fill_parent"
             android:layout_height="80dip"
             android:layout_alignParentTop="true"
@@ -24,9 +25,9 @@
 
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
+                android:gravity="center"
                 android:text="Dashboard"
                 android:textAlignment="gravity"
-                android:gravity="center"
                 android:textColor="#ffffff"
                 android:textSize="40dp"
                 android:textStyle="bold|normal"
@@ -70,13 +71,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="60dip"
                     android:layout_alignParentTop="true"
-                    android:background="#ecf0f1"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    >
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#ecf0f1"
+                    android:gravity="center">
 
 
                     <ImageView
@@ -85,34 +85,32 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="30dp"
                         android:src="@drawable/user_black" />
+
                     <TextView
                         android:id="@+id/text_resume_game"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
                         android:layout_marginLeft="20dp"
                         android:text="Username"
-                        />
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
 
-
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout12"
                 android:layout_width="fill_parent"
                 android:layout_height="60dip"
                 android:layout_alignParentTop="true"
-                android:background="#ecf0f1"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                >
+                android:layout_marginRight="20dp"
+                android:background="#ecf0f1"
+                android:gravity="center">
 
 
                 <ImageView
@@ -121,19 +119,18 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
                     android:src="@drawable/score_black" />
+
                 <TextView
                     android:id="@+id/text_score_game"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
                     android:layout_marginLeft="20dp"
                     android:text="Score"
-                    />
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -142,65 +139,63 @@
                 android:layout_height="50dip"
                 android:layout_alignParentTop="true"
                 android:background="#ecf0f1"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/iv_another_acc"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@drawable/category_black" />
+
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:text="Categories"
                     android:textColor="#000000"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:textStyle="bold" />
 
             </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#9b59b6"
-    >
 
-    <ImageButton
-        android:id="@+id/cat_movies"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
-        android:padding="20dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/movies"
-        />
-    <ImageButton
-        android:id="@+id/cat_games"
-        android:layout_marginLeft="20dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="20dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/games"
-        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#9b59b6">
 
-    <ImageButton
-        android:id="@+id/cat_history"
-        android:layout_marginLeft="20dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="20dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/history"
-        />
-    </LinearLayout>
+                <ImageButton
+                    android:id="@+id/cat_movies"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/movies" />
+
+                <ImageButton
+                    android:id="@+id/cat_games"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/games" />
+
+                <ImageButton
+                    android:id="@+id/cat_history"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/history" />
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/cat_literature"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#f1c40f"
-                >
+                android:background="#f1c40f">
 
                 <ImageButton
                     android:id="@+id/cat_science"
@@ -209,32 +204,31 @@
                     android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/science"
-                    />
+                    android:src="@drawable/science" />
+
                 <ImageButton
                     android:id="@+id/cat_tech"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/tech"
-                    />
+                    android:src="@drawable/tech" />
 
                 <ImageButton
                     android:id="@+id/cat_music"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/music"/>
+                    android:src="@drawable/music" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#1abc9c"
-                >
+                android:background="#1abc9c">
 
                 <ImageButton
                     android:id="@+id/cat_mystery"
@@ -243,27 +237,25 @@
                     android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/mystery"
-                    />
+                    android:src="@drawable/mystery" />
+
                 <ImageButton
                     android:id="@+id/cat_seasons"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/seasons"
-                    />
+                    android:src="@drawable/seasons" />
 
                 <ImageButton
                     android:id="@+id/cat_personalities"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/sports"
-                    />
+                    android:src="@drawable/sports" />
             </LinearLayout>
 
             <LinearLayout
@@ -271,25 +263,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="80dip"
                 android:layout_alignParentTop="true"
-                android:background="#2c3e50"
-                android:gravity="center"
                 android:layout_marginTop="5dp"
-                >
+                android:background="#2c3e50"
+                android:gravity="center">
+
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/clipboard"
-                    />
+                    android:src="@drawable/clipboard" />
+
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/trophy"
-                    />
+                    android:src="@drawable/trophy" />
+
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/fb"
-                    />
+                    android:src="@drawable/fb" />
 
             </LinearLayout>
 

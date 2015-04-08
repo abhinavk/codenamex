@@ -76,7 +76,6 @@ public class QuestionActivity extends ActionBarActivity {
 
         // Get the current user details in the instance
         SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
-
                 current_id = sp.getString("id","");
                 current_fname = sp.getString("fname","");
                 current_lname = sp.getString("lname","");
@@ -260,8 +259,12 @@ public class QuestionActivity extends ActionBarActivity {
             super.onPostExecute(data);
 
             try {
-                String reply = data.getString("result");
-                Log.d("REPLY",reply);
+                String reply = data.getString("score");
+                Log.d("REPLY-newscore",reply);
+                SharedPreferences sp = getSharedPreferences("loginfo",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("score",reply);
+                editor.commit();
             } catch (JSONException e) {
 
             }
