@@ -30,7 +30,7 @@ public class Category extends Activity {
         4 - Science
         5 - Tech
         6 - Music
-        7 - Personalities
+        7 - Personalities/Sports
         8 - Seasons
         */
 

@@ -173,13 +173,13 @@
                     android:src="@drawable/movies" />
 
                 <ImageButton
-                    android:id="@+id/cat_games"
+                    android:id="@+id/cat_tech"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/games" />
+                    android:src="@drawable/tech" />
 
                 <ImageButton
                     android:id="@+id/cat_history"
@@ -207,13 +207,13 @@
                     android:src="@drawable/science" />
 
                 <ImageButton
-                    android:id="@+id/cat_tech"
+                    android:id="@+id/cat_games"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="20dp"
                     android:padding="20dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/tech" />
+                    android:src="@drawable/games" />
 
                 <ImageButton
                     android:id="@+id/cat_music"
