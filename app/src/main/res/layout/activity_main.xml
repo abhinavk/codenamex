@@ -210,6 +210,7 @@
 
                     android:src="@drawable/lock_black" />
                 <EditText
+                    android:password="true"
                     android:id="@+id/pwdbox"
                     android:layout_width="240dp"
                     android:layout_height="50dp"
