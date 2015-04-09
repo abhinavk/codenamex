@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:text="Codename X"
+                android:text="Quizly"
                 android:textAlignment="gravity"
                 android:gravity="center"
                 android:textColor="#ffffff"
@@ -121,7 +121,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
 
-                    android:src="@drawable/lock_black" />
+                    android:src="@drawable/email" />
                 <EditText
                     android:id="@+id/email"
                     android:layout_width="240dp"

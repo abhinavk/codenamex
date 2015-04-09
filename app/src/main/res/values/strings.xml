@@ -6,7 +6,7 @@
 
     <string name="title_activity_splash">Splash</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">CODENAME X</string>
+    <string name="dummy_content">Quizly</string>
     <string name="dashactivity">Dashboard</string>
     <string name="title_activity_question">Question</string>
 
