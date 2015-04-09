@@ -38,10 +38,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Question"
-            android:label="@string/title_activity_question" >
-        </activity>
+
         <activity
             android:name=".QuestionActivity"
             android:label="@string/title_activity_question" >

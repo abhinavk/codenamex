@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Codenamex</string>
+    <string name="app_name">Quizly</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_splash">Quizly</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">Quizly</string>
     <string name="dashactivity">Dashboard</string>
